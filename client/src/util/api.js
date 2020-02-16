@@ -2,7 +2,7 @@
  * API helper functions
  */
 
-const BASE_URL = 'http://a9e5d1ff.ngrok.io/';
+const BASE_URL = 'http://localhost:5000/';
 
 export const getEntries = (callback) => {
   const path = 'entries';
