@@ -6,7 +6,6 @@ import firebase_admin
 import flask
 import json
 import os
-from ner import calcPolarity, discretePolarity, entities
 
 app = Flask(__name__)
 CORS(app)
