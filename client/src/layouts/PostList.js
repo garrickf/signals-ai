@@ -14,6 +14,7 @@ const ScrollContainer = styled(Flex)`
 `;
 
 const PostList = ({ active, posts }) => {
+  console.log(posts);
 
   return (
     <ScrollContainer style={{
@@ -32,41 +33,9 @@ const PostList = ({ active, posts }) => {
 PostList.defaultProps = {
   posts: [
     {
-      content: 'Feeling a little weird today. I think it started when I got a call from Ryan while waiting in line at the store...',
+      content: 'Default post content',
       date: 'Sat Feb 15 2020 15:38:06 GMT-0800 (Pacific Standard Time)'
     },
-    {
-      content: 'Hello2',
-      date: 'Sat Feb 15 2020 15:38:06 GMT-0800 (Pacific Standard Time)'
-    },
-    {
-      content: 'Hello2',
-      date: 'Sat Feb 15 2020 15:38:06 GMT-0800 (Pacific Standard Time)'
-    },
-    {
-      content: 'Hello2',
-      date: 'Sat Feb 15 2020 15:38:06 GMT-0800 (Pacific Standard Time)'
-    },
-    {
-      content: 'Hello2',
-      date: 'Sat Feb 15 2020 15:38:06 GMT-0800 (Pacific Standard Time)'
-    },
-    {
-      content: 'Hello2',
-      date: 'Sat Feb 15 2020 15:38:06 GMT-0800 (Pacific Standard Time)'
-    },
-    {
-      content: 'Hello2',
-      date: 'Sat Feb 15 2020 15:38:06 GMT-0800 (Pacific Standard Time)'
-    },
-    {
-      content: 'Hello2',
-      date: 'Sat Feb 15 2020 15:38:06 GMT-0800 (Pacific Standard Time)'
-    },
-    {
-      content: 'Hello2',
-      date: 'Sat Feb 15 2020 15:38:06 GMT-0800 (Pacific Standard Time)'
-    }
   ]
 };
 

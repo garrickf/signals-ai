@@ -18,7 +18,6 @@ const PostCardContainer = styled(Box)`
 const Grayed = styled.span`
   opacity: 0.4;
 `
-
 const DAYS = [
   'Sunday',
   'Monday',

@@ -8,6 +8,7 @@ import AnimatedBox from '../core/AnimatedBox';
 import { useSpring } from 'react-spring';
 import styled from 'styled-components'
 import PostList from '../layouts/PostList';
+import { getEntries } from '../util/api';
 
 const SidebarBackground = styled(AnimatedBox)`
   background: #e9e9e9;
@@ -21,6 +22,8 @@ const SidebarContainer = styled(Flex)`
 `;
 
 const Sidebar = ({ active }) => {
+  const [posts, setPosts] = useState([]);
+  getEntries(data => setPosts(data));
 
   const springProps = useSpring({
     width: active ? '25em' : '0em',
@@ -33,7 +36,7 @@ const Sidebar = ({ active }) => {
     }}>
       <SidebarContainer flexDirection="column">
         {/* TODO: make API call and pass in posts for PostList */}
-        <PostList active={active} />
+        <PostList active={active} posts={posts} />
       </SidebarContainer>
     </SidebarBackground>
   )

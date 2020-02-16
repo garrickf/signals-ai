@@ -25,7 +25,7 @@ const Insights = ({ handleExpandSidebar }) => {
     <AnimatedBox
       style={{
         width: springProps.width,
-        backgroundColor: 'aliceblue'
+        backgroundColor: '#A0D7FF',
       }}
       height="100%"
     >
