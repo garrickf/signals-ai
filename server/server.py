@@ -94,7 +94,7 @@ def create_post():
 # GET all entries
 @app.route("/entries")
 def retrieve_posts():
-	docs = ENTRIES.stream()
+	docs = ENTRIES.order_by("date", direction="DESCENDING").stream()
 	entry_list = [doc.to_dict() for doc in docs]
 	
 	print(entry_list)
