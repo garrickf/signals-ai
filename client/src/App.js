@@ -1,25 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import styled, { ThemeProvider } from 'styled-components';
+import { Flex } from 'rebass';
+import Journal from './sections/Journal';
+import Insights from './sections/Insights';
+import Sidebar from './sections/Sidebar';
+
 function App() {
+  const [sidebarActive, setSidebarActive] = useState(false);
+
+  const handleExpandSidebar = () => {
+    setSidebarActive(a => !a)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={{}}>
+      <Flex width="100vw" height="100vh" alignItems="center">
+        <Insights handleExpandSidebar={handleExpandSidebar} />
+        <Sidebar active={sidebarActive} />
+        <Journal active={!sidebarActive} />
+      </Flex>
+    </ThemeProvider>
   );
 }
 
