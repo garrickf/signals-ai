@@ -1,29 +1,30 @@
 from flask import Flask, session, request, escape, url_for
 from flask import request
 from flask_cors import CORS
-from firebase_admin import db
+# from firebase_admin import db
 import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 import flask
 import json
 import os
+import uuid
 
 app = Flask(__name__)
-CORS(app)
-firebase_admin.initialize_app(options={
-	'databaseURL': 'https://signals-ai.firebaseio.com'
-})
+CORS(app) # Allow CORS
 
-USERS = db.reference('users')
-ENTRIES = db.reference('entries')
-ENTITIES = db.reference('entities')
+# Use a service account
+cred = credentials.Certificate('creds.json')
+firebase_admin.initialize_app(cred)
+
+db = firestore.client()
+
+USERS = db.collection(u'users')
+ENTRIES = db.collection(u'entries')
+ENTITIES = db.collection(u'entities')
 
 def parseEntry(entry):
-	content = entry.get("content")
-	sentiment = calcPolarity(content)
-	tags = entities(entry)
-	print(content)
-	print(sentiment)
-	print(tags)
+	pass
 
 def parseUser():
 	pass
@@ -84,22 +85,21 @@ def create_post():
 	req = flask.request.json
 	parseEntry(req)
 	print(type(req), "Content:", req["content"])
-	entry = ENTRIES.push(req)
-	return flask.jsonify({'id': entry.key}), 201
+	ENTRIES.document(str(uuid.uuid1())).set({
+		u'content': req['content'],
+		u'date': req['date']
+	})
+	return flask.jsonify({'status': 'added'}), 201
 
 # GET all entries
 @app.route("/entries")
 def retrieve_posts():
-	entries = ENTRIES.get()
-	entry_list = []
-	for entry in entries.items():
-		key, val = entry
-		val["_id"] = key
-		entry_list.append(val)
+	docs = ENTRIES.stream()
+	entry_list = [doc.to_dict() for doc in docs]
+	
 	print(entry_list)
 	print(type(entry_list))
 	return flask.jsonify(entry_list), 201
-
 
 app.secret_key = os.urandom(24)
 app.run(host= '0.0.0.0')
