@@ -2,7 +2,9 @@
 **Signals** is an intelligent journalling app that promotes consistent self-reflection by 
 revealing relationships and trends in your writings. The final product is a React client that interfaces with a lightweight Flask backend. Firestore is used as the database solution, and Google Cloud Functions are used to run ML tasks on user-submitted data. The models we use are pre-trained, and, in the interest of privacy, we don't loop user data back into learning.
 
-> This project was developed in (less than) 36 hours at Stanford TreeHacks 2020 by Ben Anderson, Garrick Fernandez and Natalie Gable!
+> This project was originally developed in (less than) 36 hours at Stanford TreeHacks 2020 by Ben Anderson, Garrick Fernandez and Natalie Gable!
+
+![](./app-preview.png)
 
 # Running the Flask webserver ⚗️
 
